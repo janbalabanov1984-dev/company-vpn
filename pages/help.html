@@ -8,91 +8,119 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body>
+<body data-page="help">
 
     <header class="site-header">
         <div class="container nav-container">
             <a href="../index.html" class="logo">
                 <span class="text-accent">X</span>VPN
             </a>
-            <button class="mobile-toggle"><span></span><span></span><span></span></button>
-            <nav class="nav-links">
-                <a href="../index.html">Home</a>
-                <a href="vpn.html">How it works</a>
-                <a href="pricing.html">Pricing</a>
+            <button class="mobile-toggle" aria-label="Toggle navigation" aria-controls="primary-nav"
+                aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="primary-nav" class="nav-links">
+                <a href="../index.html" data-page="home">Home</a>
+                <a href="vpn.html" data-page="vpn">How it works</a>
+                <a href="pricing.html" data-page="pricing">Pricing</a>
+                <a href="help.html" data-page="help">Help</a>
                 <a href="pricing.html" class="btn btn-primary">Get XVPN</a>
             </nav>
         </div>
     </header>
 
-    <section class="container" style="padding-top: 8rem;">
-        <div class="text-center fade-in mb-2">
+    <section class="section section--top container">
+        <div class="text-center fade-in mb-3">
             <h1>Help Center</h1>
-            <p style="color: var(--text-secondary);">Get instant answers from our AI assistant or browse FAQs.</p>
+            <p class="text-secondary">Get instant answers about your secure connection.</p>
         </div>
 
-        <!-- Chat Widget -->
-        <div class="chat-container fade-in">
-            <div class="chat-main">
-                <div class="chat-messages">
-                    <div class="msg bot">
-                        Hello! I'm X-Bot. How can I help you today?
-                    </div>
-                </div>
-                <div class="chat-controls">
-                    <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 0.5rem;">Quick Ask:</p>
-                    <div class="quick-questions">
-                        <button class="chip quick-btn" data-query="what">What is XVPN?</button>
-                        <button class="chip quick-btn" data-query="quantum">Is it Quantum safe?</button>
-                        <button class="chip quick-btn" data-query="install">How to install?</button>
-                        <button class="chip quick-btn" data-query="regions">Server locations?</button>
-                    </div>
-                </div>
+        <!-- Quick Help Widget -->
+        <div class="fade-in mb-4">
+            <div class="faq-search">
+                <input type="text" id="faq-search-input" placeholder="Search FAQ (e.g., 'refund', 'netflix')..."
+                    aria-label="Search FAQ">
+                <span
+                    style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); opacity: 0.5;">🔍</span>
             </div>
-            <div class="chat-sidebar">
-                <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Support Status</h3>
-                <div
-                    style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 0.9rem; color: #4ade80;">
-                    <span style="width: 8px; height: 8px; background: #4ade80; border-radius: 50%;"></span>
-                    All Systems Operational
-                </div>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">Average response time: &lt; 2 minutes</p>
 
-                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+            <p class="text-center text-secondary text-sm mb-1">Quick Topics:</p>
+            <div class="quick-help-grid">
+                <button class="help-chip" data-query="what">What is XVPN?</button>
+                <button class="help-chip" data-query="quantum">Is it Quantum safe?</button>
+                <button class="help-chip" data-query="install">How to install?</button>
+                <button class="help-chip" data-query="netflix">Streaming access?</button>
+                <button class="help-chip" data-query="refund">Refund Policy?</button>
+                <button class="help-chip" data-query="logs">Do you keep logs?</button>
+            </div>
 
-                <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Contact Human</h3>
-                <a href="mailto:support@xcoudlabs.ai" class="btn btn-outline"
-                    style="width: 100%; justify-content: center; font-size: 0.9rem;">Email Support</a>
+            <div class="answer-panel">
+                <p class="text-secondary">Select a topic above to see a quick answer.</p>
             </div>
         </div>
 
         <!-- Detailed FAQs -->
-        <div class="container" style="max-width: 800px; margin-top: 5rem;">
-            <h2 class="mb-2 fade-in">Common Questions</h2>
+        <div class="container" style="max-width: 800px;">
+            <div class="d-flex justify-center items-center gap-1 mb-2">
+                <h2>Common Questions</h2>
+                <span class="text-secondary text-sm">(Searchable)</span>
+            </div>
 
-            <div class="accordion-item fade-in">
-                <button class="accordion-header">I lost my connection. What do I do? <span
-                        class="text-accent">+</span></button>
-                <div class="accordion-body">
-                    <p>First, check your internet connection without the VPN. If that works, try switching server
-                        locations in the XVPN app. If the issue persists, use the 'Reset Tunnel' option in settings.</p>
+            <div class="d-flex" style="flex-direction: column; gap: 1rem;">
+                <div class="accordion-item fade-in">
+                    <button class="accordion-header">I lost my connection. What do I do? <span
+                            class="text-accent">+</span></button>
+                    <div class="accordion-body">
+                        <p>First, check your internet connection without the VPN. If that works, try switching server
+                            locations in the XVPN app. If the issue persists, use the 'Reset Tunnel' option in settings.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item fade-in">
+                    <button class="accordion-header">Does XVPN work with Netflix/Streaming? <span
+                            class="text-accent">+</span></button>
+                    <div class="accordion-body">
+                        <p>Yes, our Pro and Team plans optimize routing for streaming services. However, we cannot
+                            guarantee unlocking every specific region due to service restrictions.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item fade-in">
+                    <button class="accordion-header">How do I cancel? <span class="text-accent">+</span></button>
+                    <div class="accordion-body">
+                        <p>You can cancel anytime from your account dashboard. Your service will continue until the end
+                            of the billing period. We offer a 30-day refund policy for new accounts.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item fade-in">
+                    <button class="accordion-header">Does it work in China? <span class="text-accent">+</span></button>
+                    <div class="accordion-body">
+                        <p>Connectivity in restrictive regions varies. We offer a 'Stealth Mode' (obfuscated WireGuard)
+                            that helps bypass deep packet inspection, but success rates can fluctuate.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item fade-in">
+                    <button class="accordion-header">What encryption do you use? <span
+                            class="text-accent">+</span></button>
+                    <div class="accordion-body">
+                        <p>We use ChaCha20 for symmetric encryption (faster on mobile devices) and offer Kyber-1024 for
+                            post-quantum key exchange on supported clients.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="accordion-item fade-in">
-                <button class="accordion-header">Does XVPN work with Netflix/Streaming? <span
-                        class="text-accent">+</span></button>
-                <div class="accordion-body">
-                    <p>Yes, our Pro and Team plans optimize routing for streaming services. However, we cannot guarantee
-                        unlocking every specific region due to service restrictions.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item fade-in">
-                <button class="accordion-header">How do I cancel? <span class="text-accent">+</span></button>
-                <div class="accordion-body">
-                    <p>You can cancel anytime from your account dashboard. Your service will continue until the end of
-                        the billing period. We offer a 30-day refund policy for new accounts.</p>
+            <div class="text-center mt-3 p-4 fade-in"
+                style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;">
+                <h4>Still need help?</h4>
+                <p class="text-secondary mb-2">Our team usually responds within 2 minutes.</p>
+                <div class="d-flex justify-center gap-1">
+                    <a href="mailto:support@xcoudlabs.ai" class="btn btn-primary">Email Support</a>
+                    <a href="#" class="btn btn-outline">Live Chat (Offline)</a>
                 </div>
             </div>
         </div>
@@ -101,7 +129,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+            <div class="logo justify-center mb-1">
                 <span class="text-accent">X</span>VPN
             </div>
             <p class="footer-credits">Product of XcoudLabs</p>

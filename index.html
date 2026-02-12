@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body data-page="home">
 
     <!-- Header -->
     <header class="site-header">
@@ -17,17 +17,18 @@
                 <span class="text-accent">X</span>VPN
             </a>
 
-            <button class="mobile-toggle" aria-label="Toggle navigation">
+            <button class="mobile-toggle" aria-label="Toggle navigation" aria-controls="primary-nav"
+                aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
-            <nav class="nav-links">
-                <a href="#features">Features</a>
-                <a href="pages/vpn.html">How it works</a>
-                <a href="pages/pricing.html">Pricing</a>
-                <a href="pages/help.html">Help</a>
+            <nav id="primary-nav" class="nav-links">
+                <a href="index.html" data-page="home">Home</a>
+                <a href="pages/vpn.html" data-page="vpn">How it works</a>
+                <a href="pages/pricing.html" data-page="pricing">Pricing</a>
+                <a href="pages/help.html" data-page="help">Help</a>
                 <a href="pages/pricing.html" class="btn btn-primary">Get XVPN</a>
             </nav>
         </div>
@@ -41,76 +42,79 @@
             <div class="orbit-ring ring-3"></div>
         </div>
 
-        <div class="container">
-            <div class="hero-content fade-in">
-                <span class="hero-subtitle">Future-Proof Privacy</span>
-                <h1>Secure Connectivity for the <br><span class="gradient-text">Post-Quantum Era</span></h1>
-                <p>Protect your data with next-generation encryption. Designed for platform engineers, remote teams, and
-                    privacy-conscious individuals.</p>
+        <div class="container hero-content fade-in">
+            <span class="hero-subtitle">Future-Proof Privacy</span>
+            <h1 class="mb-1">Secure Connectivity for the <br><span class="gradient-text">Post-Quantum Era</span></h1>
+            <p class="text-secondary" style="font-size: 1.25rem; margin-bottom: 2.5rem;">
+                Protect your data with next-generation encryption. Designed for platform engineers, remote teams, and
+                privacy-conscious individuals.
+            </p>
 
-                <div class="hero-actions">
-                    <a href="pages/pricing.html" class="btn btn-primary">Get XVPN</a>
-                    <a href="pages/vpn.html" class="btn btn-outline">How it works</a>
-                </div>
+            <div class="d-flex justify-center gap-1">
+                <a href="pages/pricing.html" class="btn btn-primary">Get XVPN</a>
+                <a href="pages/vpn.html" class="btn btn-outline">How it works</a>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="container">
-        <div class="text-center mb-2 fade-in">
+    <section id="features" class="section container">
+        <div class="text-center mb-3 fade-in">
             <h2>Engineered for Security</h2>
-            <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">No bloat, just pure encrypted
-                tunnels.</p>
+            <p class="text-secondary">No bloat, just pure encrypted tunnels.</p>
         </div>
 
         <div class="grid-3">
             <div class="card fade-in">
                 <div class="card-icon">🛡️</div>
                 <h3>Post-Quantum Ready</h3>
-                <p>We use algorithms designed to resist future quantum decryption attacks, keeping your long-term
-                    secrets safe.</p>
+                <p class="text-secondary">We use algorithms designed to resist future quantum decryption attacks,
+                    keeping your long-term secrets safe.</p>
             </div>
 
             <div class="card fade-in">
                 <div class="card-icon">⚡</div>
                 <h3>High-Speed Core</h3>
-                <p>Built on modern protocols (WireGuard-compatible) for minimal latency and maximum throughput.</p>
+                <p class="text-secondary">Built on modern protocols (WireGuard-compatible) for minimal latency and
+                    maximum throughput.</p>
             </div>
 
             <div class="card fade-in">
                 <div class="card-icon">👻</div>
                 <h3>Zero-Log Policy</h3>
-                <p>We do not track, store, or sell your browsing data. What you do in the tunnel stays in the tunnel.
-                </p>
+                <p class="text-secondary">We do not track, store, or sell your browsing data. What you do in the tunnel
+                    stays in the tunnel.</p>
             </div>
 
             <div class="card fade-in">
                 <div class="card-icon">🌍</div>
                 <h3>Global Access</h3>
-                <p>Bypass geo-restrictions and access content from home while traveling abroad securely.</p>
+                <p class="text-secondary">Bypass geo-restrictions and access content from home while traveling abroad
+                    securely.</p>
             </div>
 
             <div class="card fade-in">
                 <div class="card-icon">🏢</div>
                 <h3>Team & Admin Ready</h3>
-                <p>Perfect for DevOps teams needing secure fixed-IP access to cloud infrastructure.</p>
+                <p class="text-secondary">Perfect for DevOps teams needing secure fixed-IP access to cloud
+                    infrastructure.</p>
             </div>
 
             <div class="card fade-in">
                 <div class="card-icon">📱</div>
                 <h3>Multi-Device</h3>
-                <p>One subscription covers your laptop, phone, and tablet. Seamless switching.</p>
+                <p class="text-secondary">One subscription covers your laptop, phone, and tablet. Seamless switching.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Regions Section -->
-    <section class="regions-section fade-in">
-        <div class="container">
+    <section class="section regions-section fade-in">
+        <div class="container text-center">
             <h2 class="mb-2">Global Network</h2>
 
-            <div class="region-selector">
+            <div class="d-flex justify-center gap-1 mb-2" style="flex-wrap: wrap;">
                 <button class="region-chip active" data-region="de">Hanover, Germany</button>
                 <button class="region-chip" data-region="fi">Helsinki, Finland</button>
                 <button class="region-chip" data-region="us">Ashburn, USA</button>
@@ -119,39 +123,43 @@
             <div class="region-display">
                 <div id="region-de" class="region-content active">
                     <h3 class="text-accent">Hanover, DE</h3>
-                    <p>Central European low-latency hub. Perfect for EU regulatory compliance and GDPR-friendly routing.
-                    </p>
+                    <p class="text-secondary">Central European low-latency hub. Perfect for EU regulatory compliance and
+                        GDPR-friendly routing.</p>
                 </div>
                 <div id="region-fi" class="region-content">
                     <h3 class="text-accent">Helsinki, FI</h3>
-                    <p>Powered by 100% renewable hydro-energy. Ideal for Nordic connectivity and eco-conscious routing.
-                    </p>
+                    <p class="text-secondary">Powered by 100% renewable hydro-energy. Ideal for Nordic connectivity and
+                        eco-conscious routing.</p>
                 </div>
                 <div id="region-us" class="region-content">
                     <h3 class="text-accent">Ashburn, USA</h3>
-                    <p>Direct connectivity to major US East cloud providers. The backbone of the internet.</p>
+                    <p class="text-secondary">Direct connectivity to major US East cloud providers. The backbone of the
+                        internet.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mini FAQ Helpers -->
-    <section class="container fade-in">
+    <!-- FAQ Preview -->
+    <section class="section container fade-in">
         <div class="grid-2">
             <div>
                 <h2>Why XVPN?</h2>
-                <ul
-                    style="color: var(--text-secondary); margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-                    <li>✓ Secure Public Wi-Fi protection</li>
-                    <li>✓ Safe Remote Admin Access</li>
-                    <li>✓ Private browsing at home</li>
-                    <li>✓ No bandwidth throttling</li>
+                <ul class="text-secondary mt-1 mb-2" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <li style="display: flex; gap: 0.5rem;"><span class="text-accent">✓</span> Secure Public Wi-Fi
+                        protection</li>
+                    <li style="display: flex; gap: 0.5rem;"><span class="text-accent">✓</span> Safe Remote Admin Access
+                    </li>
+                    <li style="display: flex; gap: 0.5rem;"><span class="text-accent">✓</span> Private browsing at home
+                    </li>
+                    <li style="display: flex; gap: 0.5rem;"><span class="text-accent">✓</span> No bandwidth throttling
+                    </li>
                 </ul>
-                <a href="pages/vpn.html" class="btn btn-outline mt-2">Learn more about VPNs</a>
+                <a href="pages/vpn.html" class="btn btn-outline">Learn more about VPNs</a>
             </div>
             <div>
                 <h3>Frequently Asked</h3>
-                <div class="faq-grid">
+                <div class="d-flex" style="flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
                     <div class="accordion-item">
                         <button class="accordion-header">Does it work on Mobile? <span
                                 class="text-accent">+</span></button>
@@ -183,7 +191,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+            <div class="logo justify-center mb-1">
                 <span class="text-accent">X</span>VPN
             </div>
             <p class="footer-credits">Product of XcoudLabs</p>

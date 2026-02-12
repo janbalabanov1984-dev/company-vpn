@@ -8,88 +8,164 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body>
+<body data-page="pricing">
 
     <header class="site-header">
         <div class="container nav-container">
             <a href="../index.html" class="logo">
                 <span class="text-accent">X</span>VPN
             </a>
-            <button class="mobile-toggle"><span></span><span></span><span></span></button>
-            <nav class="nav-links">
-                <a href="../index.html">Home</a>
-                <a href="vpn.html">How it works</a>
-                <a href="help.html">Help</a>
+            <button class="mobile-toggle" aria-label="Toggle navigation" aria-controls="primary-nav"
+                aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="primary-nav" class="nav-links">
+                <a href="../index.html" data-page="home">Home</a>
+                <a href="vpn.html" data-page="vpn">How it works</a>
+                <a href="pricing.html" data-page="pricing">Pricing</a>
+                <a href="help.html" data-page="help">Help</a>
                 <a href="pricing.html" class="btn btn-primary">Get XVPN</a>
             </nav>
         </div>
     </header>
 
-    <section class="container" style="padding-top: 8rem;">
+    <section class="section section--top container">
         <div class="text-center fade-in">
             <h1>Simple, Transparent <span class="gradient-text">Pricing</span></h1>
-            <p style="color: var(--text-secondary); margin-bottom: 3rem;">30-day money-back guarantee. No hidden fees.
-            </p>
+            <p class="text-secondary mb-3">Choose the security level that matches your needs.</p>
+
+            <!-- Toggle -->
+            <div class="pricing-toggle d-flex justify-center items-center gap-1 mb-3" style="cursor: pointer;">
+                <span class="toggle-label active" data-period="monthly">Monthly</span>
+                <div class="switch"></div>
+                <span class="toggle-label" data-period="yearly">Yearly <span
+                        class="text-accent text-sm">(-20%)</span></span>
+            </div>
+            <p id="billing-note" class="text-secondary text-sm mb-3">Billed monthly. Cancel anytime.</p>
         </div>
 
         <div class="grid-3 fade-in">
             <!-- Basic -->
             <div class="pricing-card">
                 <h3>Personal</h3>
-                <div class="price">€5 <span>/mo</span></div>
-                <p style="color: var(--text-secondary);">For individuals.</p>
-                <ul class="features-list">
+                <div class="price" data-price-monthly="5">€5<span>/mo</span></div>
+                <p class="text-secondary mb-2">Essential privacy for individuals.</p>
+                <div class="mb-2">
+                    <button class="btn btn-outline" style="width: 100%;">Choose Personal</button>
+                </div>
+                <ul class="check-list">
                     <li>3 Devices</li>
-                    <li>Standard Servers</li>
+                    <li>Standard Speed</li>
                     <li>No Logs Policy</li>
                     <li>Unlimited Bandwidth</li>
                 </ul>
-                <a href="#" class="btn btn-outline" style="width: 100%; justify-content: center;">Choose Personal</a>
             </div>
 
             <!-- Pro -->
             <div class="pricing-card featured">
                 <div
-                    style="position: absolute; top: 0; left: 0; width: 100%; background: var(--accent-purple); color: white; padding: 0.25rem; font-size: 0.8rem; font-weight: bold; border-top-left-radius: 16px; border-top-right-radius: 16px;">
-                    MOST POPULAR</div>
-                <h3>Pro</h3>
-                <div class="price">€12 <span>/mo</span></div>
-                <p style="color: var(--text-secondary);">For power users.</p>
-                <ul class="features-list">
+                    style="position: absolute; top: 0; left: 0; width: 100%; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple)); color: white; padding: 0.25rem; font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">
+                    Most Popular</div>
+                <h3 class="mt-1">Pro</h3>
+                <div class="price" data-price-monthly="12">€12<span>/mo</span></div>
+                <p class="text-secondary mb-2">For power users & streaming.</p>
+                <div class="mb-2">
+                    <button class="btn btn-primary" style="width: 100%;">Choose Pro</button>
+                </div>
+                <ul class="check-list">
                     <li>10 Devices</li>
-                    <li>All Global Locations</li>
+                    <li>All 50+ Global Locations</li>
                     <li>Post-Quantum Keys</li>
                     <li>Streaming Optimized</li>
                     <li>Priority Support</li>
                 </ul>
-                <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">Choose Pro</a>
             </div>
 
             <!-- Team -->
             <div class="pricing-card">
                 <h3>Team</h3>
-                <div class="price">€49 <span>/mo</span></div>
-                <p style="color: var(--text-secondary);">For small teams.</p>
-                <ul class="features-list">
+                <div class="price" data-price-monthly="49">€49<span>/mo</span></div>
+                <p class="text-secondary mb-2">For small business teams.</p>
+                <div class="mb-2">
+                    <button class="btn btn-outline" style="width: 100%;">Contact Sales</button>
+                </div>
+                <ul class="check-list">
                     <li>Unlimited Devices</li>
                     <li>Dedicated Static IP</li>
                     <li>Admin Dashboard</li>
-                    <li>Team User Management</li>
+                    <li>User Management</li>
                     <li>SLA Guarantee</li>
                 </ul>
-                <a href="#" class="btn btn-outline" style="width: 100%; justify-content: center;">Contact Sales</a>
             </div>
         </div>
 
-        <div class="text-center fade-in" style="margin-top: 4rem; color: var(--text-secondary);">
-            <p>All plans include our 30-day money-back guarantee.</p>
+        <!-- Trust Markers -->
+        <div class="d-flex justify-center gap-2 mt-3 text-secondary" style="flex-wrap: wrap;">
+            <div class="d-flex items-center gap-1">🛡️ 30-Day Money-Back Guarantee</div>
+            <div class="d-flex items-center gap-1">💳 No Hidden Fees</div>
+            <div class="d-flex items-center gap-1">🔄 Cancel Anytime</div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="feature-table-container fade-in mt-4">
+            <h3 class="mb-2 text-center">Feature Breakdown</h3>
+            <table class="feature-table">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Feature</th>
+                        <th>Personal</th>
+                        <th>Pro</th>
+                        <th>Team</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Device Limit</td>
+                        <td>3</td>
+                        <td>10</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Encryption</td>
+                        <td>ChaCha20</td>
+                        <td>ChaCha20 + PQC</td>
+                        <td>ChaCha20 + PQC</td>
+                    </tr>
+                    <tr>
+                        <td>Streaming Support</td>
+                        <td>—</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Dedicated IP</td>
+                        <td>—</td>
+                        <td>Add-on</td>
+                        <td>Included</td>
+                    </tr>
+                    <tr>
+                        <td>Admin Panel</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Priority Support</td>
+                        <td>—</td>
+                        <td>✓</td>
+                        <td>✓ (24/7)</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+            <div class="logo justify-center mb-1">
                 <span class="text-accent">X</span>VPN
             </div>
             <p class="footer-credits">Product of XcoudLabs</p>

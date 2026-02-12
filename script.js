@@ -1,14 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile Menu Toggle
+
+    // --- 1. Active Navigation Highlight ---
+    const currentPage = document.body.dataset.page;
+    if (currentPage) {
+        const activeLink = document.querySelector(`.nav-links a[data-page="${currentPage}"]`);
+        if (activeLink) activeLink.classList.add('active');
+    }
+
+    // --- 2. Mobile Menu Toggle ---
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileToggle) {
         mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            const isExpanded = navLinks.classList.toggle('active');
+            mobileToggle.setAttribute('aria-expanded', isExpanded);
+
             // Animate hamburger lines
             const spans = mobileToggle.querySelectorAll('span');
-            if (navLinks.classList.contains('active')) {
+            if (isExpanded) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
@@ -20,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Scroll Reveal Animation
+    // --- 3. Scroll Reveal Animation ---
     const observerOptions = {
         threshold: 0.1,
         rootMargin: "0px 0px -50px 0px"
@@ -38,86 +48,122 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // 3. Region Selector (Homepage)
+    // --- 4. Region Selector (Index) ---
     const chips = document.querySelectorAll('.region-chip');
-    const contents = document.querySelectorAll('.region-content');
-
     if (chips.length > 0) {
         chips.forEach(chip => {
             chip.addEventListener('click', () => {
-                // Remove active classes
-                chips.forEach(c => c.classList.remove('active'));
-                contents.forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.region-chip').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.region-content').forEach(c => c.classList.remove('active'));
 
-                // Add active class to clicked
                 chip.classList.add('active');
-
-                // Show content
-                const region = chip.dataset.region;
-                const content = document.getElementById(`region-${region}`);
-                if (content) content.classList.add('active');
+                const target = document.getElementById(`region-${chip.dataset.region}`);
+                if (target) target.classList.add('active');
             });
         });
     }
 
-    // 4. FAQ Accordion
-    const accordions = document.querySelectorAll('.accordion-header');
-    accordions.forEach(acc => {
-        acc.addEventListener('click', () => {
-            const item = acc.parentElement;
+    // --- 5. Accordion (Help/Index) ---
+    const headers = document.querySelectorAll('.accordion-header');
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            const item = header.parentElement;
             const body = item.querySelector('.accordion-body');
 
-            // Close others 
+            const isOpen = item.classList.contains('active');
+
+            // Optional: Close others
             // document.querySelectorAll('.accordion-item').forEach(i => {
-            //     if (i !== item) {
-            //         i.classList.remove('active');
-            //         i.querySelector('.accordion-body').style.maxHeight = null;
-            //     }
+            //     i.classList.remove('active');
+            //     i.querySelector('.accordion-body').style.maxHeight = null;
             // });
 
-            item.classList.toggle('active');
-            if (item.classList.contains('active')) {
+            if (!isOpen) {
+                item.classList.add('active');
                 body.style.maxHeight = body.scrollHeight + "px";
             } else {
+                item.classList.remove('active');
                 body.style.maxHeight = null;
             }
         });
     });
 
-    // 5. Chat Bot (Help Page)
-    const chatContainer = document.querySelector('.chat-messages');
-    const quickBtns = document.querySelectorAll('.quick-btn');
+    // --- 6. Pricing Toggle (Pricing Page) ---
+    const pricingToggle = document.querySelector('.pricing-toggle');
+    if (pricingToggle) {
+        pricingToggle.addEventListener('click', () => {
+            pricingToggle.classList.toggle('yearly');
+            const isYearly = pricingToggle.classList.contains('yearly');
 
-    if (chatContainer && quickBtns) {
-        const botResponses = {
-            "what": "XVPN is a high-security tunneling service designed for individuals and teams who need post-quantum readiness and zero-logging privacy.",
-            "quantum": "Our encryption protocols are designed to be resistant to future quantum computing attacks, ensuring your data remains safe for decades.",
-            "install": "You can download XVPN for MacOS, Windows, and Linux. Mobile apps for iOS and Android are coming in Q4 2026.",
-            "regions": "We currently operate premium high-speed nodes in Hanover (Germany), Helsinki (Finland), and Ashburn (USA)."
-        };
+            // Update prices
+            document.querySelectorAll('[data-price-monthly]').forEach(el => {
+                const monthlyPrice = parseInt(el.dataset.priceMonthly);
+                const yearlyPrice = Math.floor(monthlyPrice * 0.8); // 20% off
 
-        function addMessage(text, sender) {
-            const div = document.createElement('div');
-            div.classList.add('msg', sender);
-            div.textContent = text;
-            chatContainer.appendChild(div);
-            // Scroll to bottom
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        quickBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const query = btn.dataset.query;
-                const questionText = btn.textContent;
-
-                // User message
-                addMessage(questionText, 'user');
-
-                // Simulate bot delay
+                // Animate change
+                el.style.opacity = 0;
                 setTimeout(() => {
-                    const response = botResponses[query] || "I'm not sure about that, please email support@xcoudlabs.ai";
-                    addMessage(response, 'bot');
-                }, 600);
+                    el.innerHTML = isYearly ? `€${yearlyPrice}<span>/mo</span>` : `€${monthlyPrice}<span>/mo</span>`;
+                    el.style.opacity = 1;
+                }, 200);
+            });
+
+            // Update billing text if needed
+            const billingNote = document.getElementById('billing-note');
+            if (billingNote) {
+                billingNote.textContent = isYearly ? "Billed annually. Includes 2 months free." : "Billed monthly. Cancel anytime.";
+            }
+        });
+    }
+
+    // --- 7. Quick Help & Search (Help Page) ---
+    const answerPanel = document.querySelector('.answer-panel');
+    const helpChips = document.querySelectorAll('.help-chip');
+
+    const knowledgeBase = {
+        "what": "XVPN is a secure tunneling service that encrypts your internet traffic, protecting your data from ISPs, hackers, and surveillance.",
+        "quantum": "Our encryption protocols (Kyber key exchange) are designed to withstand decryption attempts from future quantum computers.",
+        "install": "Download our app for Windows, Mac, or Linux. Mobile apps (iOS/Android) are currently in closed beta.",
+        "netflix": "Yes, our 'Pro' and 'Team' plans include optimized routing for major streaming platforms.",
+        "refund": "We offer a 30-day money-back guarantee with no questions asked. Just contact support.",
+        "logs": "We have a strict Zero-Logs policy. We do not track, store, or sell any of your connection or browsing data.",
+        "china": "Connections from restrictive regions may require our 'Stealth Mode' protocol active in settings."
+    };
+
+    if (helpChips.length > 0 && answerPanel) {
+        helpChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                // Active state
+                helpChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+
+                // Update content
+                const key = chip.dataset.query;
+                const answer = knowledgeBase[key] || "Select a topic to see the answer.";
+
+                answerPanel.style.opacity = 0;
+                setTimeout(() => {
+                    answerPanel.innerHTML = `<p class='text-secondary' style='font-size: 1.1rem;'>${answer}</p>`;
+                    answerPanel.style.opacity = 1;
+                }, 200);
+            });
+        });
+    }
+
+    // FAQ Search
+    const searchInput = document.getElementById('faq-search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.accordion-item');
+
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(term)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
             });
         });
     }
