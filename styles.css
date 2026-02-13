@@ -310,29 +310,19 @@ h4 {
 }
 
 /* Hero Section */
-.hero,
-.hero-section,
-header+section {
+.hero {
   min-height: 100vh;
   min-height: 100dvh;
   /* Mobile browser friendly */
-  height: auto;
-  padding-top: 120px;
-  /* prevents navbar overlap */
-  padding-bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: calc(var(--nav-height) + 2rem);
+  padding-bottom: 2rem;
   overflow: visible;
+  /* Prevent clipping */
   text-align: center;
   position: relative;
-}
-
-.hero h1 {
-  margin: 0;
-  line-height: 1.2;
-  position: relative;
-  z-index: 2;
 }
 
 .hero-content {
