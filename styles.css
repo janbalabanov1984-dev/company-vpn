@@ -115,17 +115,22 @@ h4 {
 
 /* Applied to the first section of pages to clear the fixed header */
 .section--top {
-  padding-top: 140px !important;
-  /* Safe distance */
+  padding-top: 120px !important;
+  /* User requested ~100px, 120px is safe */
   position: relative;
   z-index: 10;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
 }
 
-/* Ensure all page titles are visible above backgrounds */
+/* Fix for grid collapse: Ensure direct children take full width */
+.section--top>* {
+  width: 100%;
+  max-width: var(--container-width, 1200px);
+}
+
+/* Ensure all page titles are visible and centered */
 .section--top h1 {
   position: relative !important;
   z-index: 100 !important;
@@ -133,8 +138,7 @@ h4 {
   transform: none !important;
   margin-top: 0 !important;
   margin-bottom: 1rem !important;
-  text-align: center;
-  width: 100%;
+  text-align: center !important;
 }
 
 .logo {
