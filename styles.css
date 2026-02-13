@@ -109,15 +109,46 @@ h4 {
   position: relative;
 }
 
-letter-spacing: -0.03em;
-color: var(--text-primary);
-display: inline-flex;
-align-items: center;
-gap: 0 !important;
-text-transform: none !important;
-font-family: var(--font-main);
-font-variant: normal;
-line-height: 1;
+.section--tight {
+  padding: 3rem 0;
+}
+
+/* Applied to the first section of pages to clear the fixed header */
+.section--top {
+  padding-top: 140px !important;
+  /* Safe distance */
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ensure all page titles are visible above backgrounds */
+.section--top h1 {
+  position: relative !important;
+  z-index: 100 !important;
+  color: #ffffff !important;
+  transform: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+  text-align: center;
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0 !important;
+  text-transform: none !important;
+  font-family: var(--font-main);
+  font-variant: normal;
+  line-height: 1;
 }
 
 /* Ensure x is lowercase */
@@ -132,15 +163,13 @@ line-height: 1;
 .hero {
   min-height: 100vh;
   min-height: 100dvh;
-  /* Mobile browser friendly */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 160px;
-  /* Safe distance from top */
+  padding-top: 140px;
+  /* Safe distance */
   padding-bottom: 4rem;
   overflow: visible;
-  /* Prevent clipping */
   text-align: center;
   position: relative;
 }
@@ -279,7 +308,8 @@ line-height: 1;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem;
+  /* Center horizontally */
   cursor: pointer;
 }
 
