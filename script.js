@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const helpChips = document.querySelectorAll('.help-chip');
 
     const knowledgeBase = {
-        "what": "XVPN is a secure tunneling service that encrypts your internet traffic, protecting your data from ISPs, hackers, and surveillance.",
+        "what": "xVPN is a secure tunneling service that encrypts your internet traffic, protecting your data from ISPs, hackers, and surveillance.",
         "quantum": "Our encryption protocols (Kyber key exchange) are designed to withstand decryption attempts from future quantum computers.",
         "install": "Download our app for Windows, Mac, or Linux. Mobile apps (iOS/Android) are currently in closed beta.",
         "netflix": "Yes, our 'Pro' and 'Team' plans include optimized routing for major streaming platforms.",
