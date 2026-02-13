@@ -114,11 +114,17 @@ h4 {
 }
 
 /* Applied to the first section of pages to clear the fixed header */
+/* Applied to the first section of pages to clear the fixed header */
 .section--top {
-  padding-top: 14rem !important;
-  /* Force ample space */
+  padding-top: 180px !important;
+  /* Explicit large padding */
   position: relative;
   z-index: 10;
+  text-align: center;
+  /* Ensure centering */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Ensure all page titles are visible above backgrounds */
@@ -128,6 +134,7 @@ h4 {
   color: #ffffff !important;
   transform: none !important;
   margin-top: 0 !important;
+  margin-bottom: 1rem !important;
 }
 
 .logo {
