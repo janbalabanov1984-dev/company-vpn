@@ -164,13 +164,16 @@ h4 {
 }
 
 /* Hero Section */
+/* Hero Section */
 .hero {
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
+  flex-direction: column;
+  /* Ensure vertical stack */
   align-items: center;
   justify-content: center;
-  padding-top: 140px;
+  padding-top: 120px;
   /* Safe distance */
   padding-bottom: 4rem;
   overflow: visible;
