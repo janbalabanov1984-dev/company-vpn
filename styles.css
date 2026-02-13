@@ -115,13 +115,16 @@ h4 {
 
 /* Applied to the first section of pages to clear the fixed header */
 .section--top {
-  padding-top: 100px !important;
-  /* Explicit user request */
+  margin-top: 150px !important;
+  /* Forces content down */
+  padding-top: 2rem;
   position: relative;
   z-index: 10;
   display: flex !important;
   flex-direction: column !important;
+  /* Forces vertical stacking */
   align-items: center !important;
+  /* Centers content horizontally */
 }
 
 /* Fix for grid collapse: Ensure direct children take full width */
@@ -133,12 +136,12 @@ h4 {
 /* Ensure all page titles are visible and centered */
 .section--top h1 {
   position: relative !important;
+  /* NO absolute positioning */
   z-index: 100 !important;
   color: #ffffff !important;
   transform: none !important;
   margin-top: 0 !important;
   margin-bottom: 2rem !important;
-  /* Added space below H1 */
   text-align: center !important;
   width: 100% !important;
   float: none !important;
